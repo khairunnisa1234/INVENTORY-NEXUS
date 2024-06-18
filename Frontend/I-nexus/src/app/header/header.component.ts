@@ -7,27 +7,10 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit  {
+export class HeaderComponent   {
 
-  adminLogedIn:boolean;
-  adminService: any;
-  service: any;
+  
 
-  constructor( 
-    private router: Router, 
-     
-  ){ 
-    this.adminLogedIn = false;
-  }
-
-  ngOnInit(): void {
-    this.adminLogedIn = this.adminService.getAdminLogInStatus();
-    console.log("this.adminLogedIn : " + this.adminLogedIn);
-     
-  }
  
-  isCustomerLoggedOut(){
-    this.service.isCustomerLoggedOut();
-  }
  
 }
