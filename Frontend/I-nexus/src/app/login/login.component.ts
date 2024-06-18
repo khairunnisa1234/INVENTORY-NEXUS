@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../user.service'; // Correct the path as needed
+import { UserService } from '../user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'] // Corrected to styleUrls
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
   user: any;
 
-  constructor(private router: Router, private service: UserService) {
+  constructor(private router: Router, private service: UserService, private toastr: ToastrService) {
     this.user = {
       "emailId": "",
       "password": ""
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
 
     if (loginForm.emailId === 'HR' && loginForm.password === 'HR') {
       this.service.setIsUserLoggedIn();
+      this.toastr.success('Login successful', 'Success');
       this.router.navigate(['showemps']);
     } else {
       this.user.emailId = loginForm.emailId;
@@ -39,9 +41,10 @@ export class LoginComponent implements OnInit {
 
       if (this.user != null) {
         this.service.setIsUserLoggedIn();
+        this.toastr.success('Login successful', 'Success');
         this.router.navigate(['products']);
       } else {
-        alert('Invalid Credentials');
+        this.toastr.error('Invalid Credentials', 'Login Failed');
       }
     }
   }

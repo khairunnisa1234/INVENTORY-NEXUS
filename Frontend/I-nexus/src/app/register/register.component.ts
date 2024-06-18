@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +13,7 @@ export class RegisterComponent implements OnInit {
   User: any;
   countries: any;
 
-  constructor(private service: UserService) {
+  constructor(private service: UserService, private toastr: ToastrService, private router: Router) {
     this.User = {
       "userName": "",
       "country": "",
@@ -33,8 +35,16 @@ export class RegisterComponent implements OnInit {
     this.User.phoneNumber = regForm.phoneNumber;
 
     console.log(this.User);
-    this.service.registerUser(this.User).subscribe((data: any) => {
-      console.log(data);
-    });
+    this.service.registerUser(this.User).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.toastr.success('Registration successful', 'Success');
+        this.router.navigate(['login']);
+      },
+      (error: any) => {
+        console.error(error);
+        this.toastr.error('Registration failed: ' + error.message, 'Error');
+      }
+    );
   }
 }

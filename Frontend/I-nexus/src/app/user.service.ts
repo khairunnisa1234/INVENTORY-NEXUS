@@ -6,15 +6,18 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-
   // private baseUrl = 'http://localhost:8085/';
-
+  
   isUserLoggedIn: boolean;
   loginStatus: Subject<boolean>;
 
   constructor(private http: HttpClient) {
     this.isUserLoggedIn = false;
     this.loginStatus = new Subject<boolean>();
+  }
+
+  resetPassword(email: string): Observable<any> {
+    return this.http.post('your-api-endpoint/forgot-password', { email });
   }
 
   setIsUserLoggedIn() {
@@ -46,5 +49,4 @@ export class UserService {
   registerUser(user: any): Observable<any> {
     return this.http.post('http://localhost:8085/register', user);
   }
-
 }

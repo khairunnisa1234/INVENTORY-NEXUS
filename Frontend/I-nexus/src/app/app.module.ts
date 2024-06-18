@@ -15,6 +15,9 @@ import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { ProductsComponent } from './products/products.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { UserService } from './user.service';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { CategoriesComponent } from './categories/categories.component';
     LogoutComponent,
     RegisterComponent,
     ProductsComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    ForgotpasswordComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -34,9 +39,10 @@ import { CategoriesComponent } from './categories/categories.component';
     HttpClientModule, // Add this import
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     FormsModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
