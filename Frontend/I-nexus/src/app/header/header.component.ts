@@ -14,7 +14,8 @@ export class HeaderComponent implements OnInit  {
   service: any;
 
   constructor( 
-    private router: Router,  
+    private router: Router, 
+     
   ){ 
     this.adminLogedIn = false;
   }
@@ -22,9 +23,9 @@ export class HeaderComponent implements OnInit  {
   ngOnInit(): void {
     this.adminLogedIn = this.adminService.getAdminLogInStatus();
     console.log("this.adminLogedIn : " + this.adminLogedIn);
+     
   }
-
-
+ 
   isCustomerLoggedOut(){
     this.service.isCustomerLoggedOut();
   }

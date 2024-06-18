@@ -17,19 +17,16 @@ export class AdminService {
   }
   adminLogout(){
     this.adminLoginStatus = false;
-  }
-  getAdminLogInStatus(){
-    return this.adminLoginStatus;
-  }
+  } 
 
   getAllCustomers(){
-    return this.http.get('http://localhost:8085/getAllCustomer');
+    return this.http.get('http://localhost:8888/getAllCustomer');
   }
   getCustomerById(cId:number){
-    return this.http.get('http://localhost:8085/getCustomerById/'+cId);
+    return this.http.get('http://localhost:8888/getCustomerById/'+cId);
   }
 
   getProducts(){
-    return this.http.get('http://localhost:8085/getProducts');
+    return this.http.get('http://localhost:8888/getProducts');
   }
 }

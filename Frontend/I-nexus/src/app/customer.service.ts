@@ -12,23 +12,23 @@ export class CustomerService {
   }
 
   registerCustomer(customer: any) {
-    return this.http.post('http://localhost:8085/registerCustomer', customer);
+    return this.http.post('http://localhost:8888/registerCustomer', customer);
   }
 
   customerLogin(emailId: any, password: any) {
-    return this.http.get('http://localhost:8085/customerLogin/' + emailId + '/' + password).toPromise();
+    return this.http.get('http://localhost:8888/customerLogin/' + emailId + '/' + password).toPromise();
   }
 
   getCustomerByEmail(emailId: any) {
-    return this.http.get('http://localhost:8085/getCustomerByEmail/' + emailId);
+    return this.http.get('http://localhost:8888/getCustomerByEmail/' + emailId);
   }
 
   sendOtpToEmail(emailId: any) {
-    return this.http.get('http://localhost:8085/sendOtpToEmail/' + emailId);
+    return this.http.get('http://localhost:8888/sendOtpToEmail/' + emailId);
   }
 
   updateCustomerPassword(customer: any) {
-    return this.http.put('http://localhost:8085/updateCustomerPassword', customer);
+    return this.http.put('http://localhost:8888/updateCustomerPassword', customer);
   }
 
   isCustomerLoggedIn() {

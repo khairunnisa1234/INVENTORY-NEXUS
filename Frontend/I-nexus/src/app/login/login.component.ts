@@ -29,7 +29,7 @@ export class LoginComponent {
       localStorage.setItem('emailId', loginForm.emailId);
       if (loginForm.emailId === 'admin' && loginForm.password === 'admin') {
         this.adminService.adminLogin();
-        this.adminLoggedStatus = this.adminService.getAdminLogInStatus();
+        
         localStorage.setItem('adminLogin', 'this.adminLoggedStatus');
         this.router.navigate(['']);
       } else {
