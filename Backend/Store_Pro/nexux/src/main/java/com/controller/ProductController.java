@@ -17,6 +17,7 @@ import com.model.Products;
 import dao.ProductDao;
 
 @RestController
+
 @CrossOrigin(origins="http://localhost:4200")
 public class ProductController {
 

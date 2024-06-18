@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan(basePackages = {"com.controller", "dao"})
 @EnableJpaRepositories(basePackages = "dao")
 
+
 public class NexuxApplication {
 
 	public static void main(String[] args) {

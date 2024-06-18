@@ -111,6 +111,16 @@ public class Customer {
 		// TODO Auto-generated method stub
 		return null;
 	}
+//
+//	public Customer orElse(Object object) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+	public Customer orElse(Object object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	
 	

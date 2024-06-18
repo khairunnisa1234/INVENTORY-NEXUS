@@ -9,22 +9,24 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit  {
 
-  // adminLogedIn:boolean;
+  adminLogedIn:boolean;
+  adminService: any;
+  service: any;
 
   constructor( 
     private router: Router,  
   ){ 
-    // this.adminLogedIn = false;
+    this.adminLogedIn = false;
   }
 
   ngOnInit(): void {
-    // this.adminLogedIn = this.adminService.getAdminLogInStatus();
-    // console.log("this.adminLogedIn : " + this.adminLogedIn);
+    this.adminLogedIn = this.adminService.getAdminLogInStatus();
+    console.log("this.adminLogedIn : " + this.adminLogedIn);
   }
 
 
-  // isCustomerLoggedOut(){
-  //   this.service.isCustomerLoggedOut();
-  // }
+  isCustomerLoggedOut(){
+    this.service.isCustomerLoggedOut();
+  }
  
 }

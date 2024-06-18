@@ -2,6 +2,8 @@ package com.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,11 +17,15 @@ import com.model.Customer;
 import dao.CustomerDao;
 
 @RestController
+
 @CrossOrigin(origins="http://localhost:4200")
+
 public class CustomerController {
+	
+	  
 
 	@Autowired
-	CustomerDao customerDao;
+	 private CustomerDao customerDao;
 	
 	@GetMapping("getAllCustomer")
 	public List<Customer> getAllCustomers(){
@@ -41,11 +47,15 @@ public class CustomerController {
 		return customerDao.registerCustomer(customer);
 	}
 	
-	@GetMapping("customerLogin/{emailId}/{password}")
-	public Customer customerLogin(@PathVariable("emailId") String emailId, @PathVariable("password") String password){
-		return customerDao.customerLogin(emailId, password);
-	}
-
+	@GetMapping("/customerLogin/{email}/{password}")
+    public ResponseEntity<?> customerLogin(@PathVariable String email, @PathVariable String password) {
+        Customer customer = customerDao.customerLogin(email, password);
+        if (customer != null) {
+            return new ResponseEntity<>(customer, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+        }
+    }
 	@GetMapping("sendOtpToEmail/{emailId}")
 	public String sendOtpToEmail(@PathVariable("emailId") String emailId){		
 		return customerDao.sendOtpToEmail(emailId);
