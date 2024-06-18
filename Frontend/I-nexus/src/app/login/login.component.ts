@@ -1,53 +1,47 @@
-import { Component } from '@angular/core';
-import { CustomerService } from '../customer.service';
-import { ToastrService } from 'ngx-toastr';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AdminService } from '../admin.service';
+import { UserService } from '../user.service'; // Correct the path as needed
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'] // Corrected to styleUrls
 })
-export class LoginComponent {
-  customer: any;
-  custLoggedSatus: boolean = false;
-  adminLoggedStatus: boolean = false;
-  customerId: any;
+export class LoginComponent implements OnInit {
 
-  constructor(
-    private service: CustomerService,
-    private toastr: ToastrService, 
-    private router: Router,
-    private adminService: AdminService  
-  ) {}
+  user: any;
+
+  constructor(private router: Router, private service: UserService) {
+    this.user = {
+      "emailId": "",
+      "password": ""
+    };
+  }
+
+  ngOnInit() {}
 
   async loginSubmit(loginForm: any) {
-    if (loginForm.emailId === '' || loginForm.password === '') {
-      this.toastr.error("Invalid Credentials", 'Login Status', { timeOut: 2000, progressBar: true, progressAnimation: 'increasing' });
-    } else {
-      localStorage.setItem('emailId', loginForm.emailId);
-      if (loginForm.emailId === 'admin' && loginForm.password === 'admin') {
-        this.adminService.adminLogin();
-        this.adminLoggedStatus = this.adminService.getAdminLogInStatus();
-        localStorage.setItem('adminLogin', 'this.adminLoggedStatus');
-        this.router.navigate(['']);
-      } else {
-        await this.service.customerLogin(loginForm.emailId, loginForm.password).then((data: any) => {
-          this.customer = data;
-          if (this.customer != null) {
-            this.customerId = data.cId;
-            localStorage.setItem('customerId', this.customerId);
-          }
-        });
+    // Storing the user email under localStorage
+    localStorage.setItem("emailId", loginForm.emailId);
 
-        if (this.customer != null) {
-          this.toastr.success("Login Successfully", 'Login Status', { timeOut: 1000, progressBar: true, progressAnimation: 'increasing' });
-          this.service.isCustomerLoggedIn();
-          this.router.navigate(['']);
-        } else {
-          this.toastr.error("Invalid Credentials", 'Login Status', { timeOut: 1000, progressBar: true, progressAnimation: 'increasing' });
-        }
+    if (loginForm.emailId == 'HR' && loginForm.password == 'HR') {
+      this.service.setIsUserLoggedIn();
+      this.router.navigate(['products']);
+    } else {
+      this.user.emailId = loginForm.emailId;
+      this.user.password = loginForm.password;
+
+      // Using Post Request
+      await this.service.login(this.user).then((data: any) => {
+        console.log(data);
+        this.user = data;
+      });
+
+      if (this.user != null) {
+        this.service.setIsUserLoggedIn();
+        this.router.navigate(['products']);
+      } else {
+        alert('Invalid Credentials');
       }
     }
   }
