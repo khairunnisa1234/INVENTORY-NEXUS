@@ -38,4 +38,8 @@ public class UserLogin {
 	public String toString() {
 		return "CustomerLogin [emailId=" + emailId + ", password=" + password + "]";
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 5b083c9e4e6cf774e586321efca63b6cfe11a561

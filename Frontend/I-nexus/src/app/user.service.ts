@@ -1,43 +1,50 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  getAllUsers() {
-    throw new Error('Method not implemented.');
-  }
-  getCustomerLoginStatus(): import("@angular/router").MaybeAsync<import("@angular/router").GuardResult> {
-    throw new Error('Method not implemented.');
-  }
+
+  // private baseUrl = 'http://localhost:8085/';
 
   isUserLoggedIn: boolean;
+  loginStatus: Subject<boolean>;
 
   constructor(private http: HttpClient) {
     this.isUserLoggedIn = false;
+    this.loginStatus = new Subject<boolean>();
   }
 
   setIsUserLoggedIn() {
     this.isUserLoggedIn = true;
+    this.loginStatus.next(true);
+  }
+
+  setIsUserLoggedOut() {
+    this.isUserLoggedIn = false;
+    this.loginStatus.next(false);
   }
 
   getIsUserLoggedIn(): boolean {
     return this.isUserLoggedIn;
   }
 
-  setIsUserLoggedOut() {
-    this.isUserLoggedIn = false;
+  getUserLoginStatus(): Observable<boolean> {
+    return this.loginStatus.asObservable();
   }
 
-  registerUser(user: any): any {
+  userLogin(user: any): Promise<any> {
+    return this.http.post('http://localhost:8085/login', user).toPromise();
+  }
+
+  getAllCountries(): Observable<any> {
+    return this.http.get('https://restcountries.com/v3.1/all');
+  }
+
+  registerUser(user: any): Observable<any> {
     return this.http.post('http://localhost:8085/register', user);
   }
 
-  login(loginForm: any): Promise<any> {
-    return this.http.post('http://localhost:8085/login', loginForm).toPromise();
-  }
-  getAllCountries(): any {
-    return this.http.get('https://restcountries.com/v3.1/all');
-  }
 }

@@ -1,6 +1,10 @@
 <<<<<<< HEAD
 package com.controllers;
 
+=======
+<<<<<<< HEAD
+package com.controllers;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,31 +34,36 @@ public class UserController {
 }
 =======
 package com.controller;
+>>>>>>> 5b083c9e4e6cf774e586321efca63b6cfe11a561
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.model.Customer;
-
-import dao.CustomerDao;
-
-@RestController
+import org.springframework.web.bind.annotation.*;
+import com.model.User;
+import com.model.UserLogin;
+import com.dao.UserDao;
 
 @CrossOrigin(origins="http://localhost:4200")
+@RestController
+//@RequestMapping("/api")
+public class UserController {
 
-public class CustomerController {
-	
-	  
+    @Autowired
+    private UserDao userDao;
 
+<<<<<<< HEAD
+    @PostMapping("/register")
+    public ResponseEntity<User> registerUser(@RequestBody User user) {
+        User savedUser = userDao.saveUser(user);
+        return ResponseEntity.ok(savedUser);
+    }
+
+    @PostMapping("/login")
+    public User loginUser(@RequestBody UserLogin userLogin) {
+        return userDao.loginUser(userLogin);
+    }
+}
+=======
 	@Autowired
 	 private CustomerDao customerDao;
 	
@@ -100,3 +109,4 @@ public class CustomerController {
 	
 }
 >>>>>>> 9e8faaaa3c6ffc18bd28c0c3b604990740a2dbf9
+>>>>>>> 5b083c9e4e6cf774e586321efca63b6cfe11a561

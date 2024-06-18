@@ -24,15 +24,15 @@ export class LoginComponent implements OnInit {
     // Storing the user email under localStorage
     localStorage.setItem("emailId", loginForm.emailId);
 
-    if (loginForm.emailId == 'HR' && loginForm.password == 'HR') {
+    if (loginForm.emailId === 'HR' && loginForm.password === 'HR') {
       this.service.setIsUserLoggedIn();
-      this.router.navigate(['products']);
+      this.router.navigate(['showemps']);
     } else {
       this.user.emailId = loginForm.emailId;
       this.user.password = loginForm.password;
 
       // Using Post Request
-      await this.service.login(this.user).then((data: any) => {
+      await this.service.userLogin(this.user).then((data: any) => {
         console.log(data);
         this.user = data;
       });
