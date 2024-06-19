@@ -1,0 +1,19 @@
+package com.service.impl;
+
+import com.dao.UserDao;
+import com.model.User;
+import com.model.request.CreateUserRequest;
+
+public class UserServiceImpl {
+	public User createUser(CreateUserRequest createUserRequest) {
+        String userEmail = createUserRequest.getEmailId();
+
+        // Check if user with the same email already exists
+        User existingUser = UserDao.findByEmailId(userEmail);
+        if (existingUser != null) {
+            throw new IllegalArgumentException("Email address already exists");
+        }
+        User user = new User(createUserRequest.getUserName(),createUserRequest.getEmailId(),createUserRequest.getPassword(),createUserRequest.getMobileNumber());
+        return userDao.save(user);
+    }
+}

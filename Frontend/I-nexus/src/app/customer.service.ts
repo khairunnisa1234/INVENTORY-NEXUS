@@ -35,10 +35,7 @@ export class CustomerService {
     this.loginStatus = true;
   }
 
-  isCustomerLoggedOut() {
-    this.loginStatus = false;
-  }
-
+ 
   getCustomerLoginStatus() {
     return this.loginStatus;
   }

@@ -1,25 +1,11 @@
 package com.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
+import org.springframework.data.repository.CrudRepository;
 
 import com.model.User;
-import com.model.UserLogin;
 
+public interface UserDao  extends CrudRepository<User, Long>{
+	 User  findByEmailId(String emailId) ;
+		// TODO Auto-generated method stub
 
-@Service
-@Repository
-public class UserDao {
-
-    @Autowired
-    private UserRepository userRepo;
-    
-    public User saveUser(User user) {
-        return userRepo.save(user);
-    }
-
-    public User loginUser(UserLogin userLogin) {
-        return userRepo.findByEmailIdAndPassword(userLogin.getEmailId(), userLogin.getPassword());
-    }
 }
