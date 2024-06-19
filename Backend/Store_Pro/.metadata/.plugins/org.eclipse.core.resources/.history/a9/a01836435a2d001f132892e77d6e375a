@@ -1,0 +1,11 @@
+package com.ts.nexux;
+
+import org.springframework.boot.SpringApplication;
+
+public class NexuxApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(NexuxApplication.class, args);
+	}
+
+}

@@ -1,0 +1,35 @@
+package com.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.model.UserLogin;
+import com.repository.UserLoginRepository;
+
+@Service
+public class UserLoginService {
+
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final UserLoginRepository userLoginRepository;
+
+    @Autowired
+    public UserLoginService(BCryptPasswordEncoder bCryptPasswordEncoder, UserLoginRepository userLoginRepository) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.userLoginRepository = userLoginRepository;
+    }
+
+    public UserLogin registerUser(UserLogin userLogin) {
+        String encodedPassword = bCryptPasswordEncoder.encode(userLogin.getPassword());
+        userLogin.setPassword(encodedPassword);
+        return userLoginRepository.save(userLogin);
+    }
+
+    public boolean validateUser(UserLogin userLogin, String rawPassword) {
+        return bCryptPasswordEncoder.matches(rawPassword, userLogin.getPassword());
+    }
+
+    public UserLogin findUserByEmail(String emailId) {
+        return userLoginRepository.findByEmailId(emailId);
+    }
+}

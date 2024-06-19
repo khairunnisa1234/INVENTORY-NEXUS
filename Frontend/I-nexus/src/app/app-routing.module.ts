@@ -6,7 +6,6 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { ProductsComponent } from './products/products.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CartComponent } from './cart/cart.component';
-import { LogoutComponent } from './logout/logout.component';
 import { authGuard } from './auth.guard';
 
 
@@ -21,7 +20,7 @@ const routes: Routes = [
   { path: 'categories',canActivate: [authGuard], component: CategoriesComponent },
   { path: 'products',canActivate: [authGuard], component: ProductsComponent },
   { path: 'cart',canActivate: [authGuard], component: CartComponent },
-  { path: 'logout',canActivate: [authGuard], component: LogoutComponent } 
+  
 
   
 ];

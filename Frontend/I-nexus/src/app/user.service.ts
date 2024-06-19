@@ -36,7 +36,7 @@ export class UserService {
   }
 
   userLogin(user: any): Promise<any> {
-    return this.http.post('http://localhost:8085/login', user).toPromise();
+    return this.http.post('http://localhost:8888/login', user).toPromise();
   }
 
   getAllCountries(): Observable<any> {
@@ -44,7 +44,7 @@ export class UserService {
   }
 
   registerUser(user: any): Observable<any> {
-    return this.http.post('http://localhost:8085/register', user);
+    return this.http.post('http://localhost:8888/register', user);
   }
 
 }

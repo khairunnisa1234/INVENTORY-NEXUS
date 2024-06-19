@@ -1,0 +1,33 @@
+package com.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import com.model.UserLogin;
+import com.service.UserLoginService;
+
+@RestController
+@RequestMapping("/api/auth")
+public class UserLoginController {
+
+    private final UserLoginService userLoginService;
+
+    @Autowired
+    public UserLoginController(UserLoginService userLoginService) {
+        this.userLoginService = userLoginService;
+    }
+
+    @PostMapping("/register")
+    public UserLogin register(@RequestBody UserLogin userLogin) {
+        return userLoginService.registerUser(userLogin);
+    }
+
+    @PostMapping("/login")
+    public boolean login(@RequestBody UserLogin userLogin) {
+        UserLogin storedUser = userLoginService.findUserByEmail(userLogin.getEmailId());
+        if (storedUser != null) {
+            return userLoginService.validateUser(storedUser, userLogin.getPassword());
+        }
+        return false;
+    }
+}
