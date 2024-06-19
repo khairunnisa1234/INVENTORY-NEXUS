@@ -7,7 +7,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class UserService {
   // private baseUrl = 'http://localhost:8085/';
-  
+
   isUserLoggedIn: boolean;
   loginStatus: Subject<boolean>;
 
@@ -17,7 +17,7 @@ export class UserService {
   }
 
   resetPassword(email: string): Observable<any> {
-    return this.http.post('your-api-endpoint/forgot-password', { email });
+    return this.http.post('this is my aip/forgot-password', { email });
   }
 
   setIsUserLoggedIn() {

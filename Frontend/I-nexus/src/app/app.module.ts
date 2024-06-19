@@ -11,13 +11,13 @@ import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CartComponent } from './cart/cart.component';
-import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { ProductsComponent } from './products/products.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { UserService } from './user.service';
 import { HomeComponent } from './home/home.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -26,17 +26,17 @@ import { HomeComponent } from './home/home.component';
     AboutusComponent,
     LoginComponent,
     CartComponent,
-    LogoutComponent,
     RegisterComponent,
     ProductsComponent,
     CategoriesComponent,
     ForgotpasswordComponent,
-    HomeComponent
+    HomeComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, // Add this import
+    HttpClientModule, 
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
