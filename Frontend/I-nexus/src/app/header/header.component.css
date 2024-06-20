@@ -1,0 +1,42 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar {
+     background-size: cover;
+    padding: 15px 0; /* Adjust padding as needed */
+    border: none; /* Remove default border */
+    border-radius: 0; /* Remove default border-radius */
+    color: #fff; /* Text color */
+  }
+  
+  .navbar-brand {
+    font-size: 24px; /* Adjust font size */
+    font-weight: bold; /* Make text bold */
+    display: flex; /* Use flexbox for better alignment */
+    align-items: center; /* Center vertically */
+  }
+  
+  .navbar-brand img {
+    max-height: 40px; /* Adjust the max height of the image */
+    margin-right: 10px; /* Space between logo and small image */
+  }
+  
+  .navbar-nav > li > a {
+    color: #fff; /* Link text color */
+  }
+  
+  .navbar-form {
+    margin-left: auto; /* Align form to the right */
+  }
+  
+  .navbar-form .btn {
+    margin-right: 10px; /* Adjust button margin */
+  }
+  
+  .navbar-form .form-control {
+    margin-right: 10px; /* Adjust input margin */
+  }
+  

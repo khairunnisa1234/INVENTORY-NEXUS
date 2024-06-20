@@ -3,14 +3,6 @@ import { UserService } from '../user.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
-interface User {
-  userName: string;
-  country: string;
-  emailId: string;
-  password: string;
-  phoneNumber: string;
-}
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -18,34 +10,29 @@ interface User {
 })
 export class RegisterComponent implements OnInit {
   
-  User: User;
-  countries: any[];
+  User: any;
+  countries: any;
 
   constructor(private service: UserService, private toastr: ToastrService, private router: Router) {
     this.User = {
-      userName: '',
-      country: '',
-      emailId: '',
-      password: '',
-      phoneNumber: ''
-    };
-    this.countries = [];
+      "userName": "",
+      "country": "",
+      "emailId": "",
+      "password": "",
+      "phoneNumber": ""
+    }
   }
 
   ngOnInit() {
-    this.service.getAllCountries().subscribe(
-      (data: any) => { this.countries = data; },
-      (error: any) => { console.error('Error fetching countries:', error); }
-    );
+    this.service.getAllCountries().subscribe((data: any) => { this.countries = data; });
   }
 
   registerSubmit(regForm: any) {
-    if (regForm.valid) {
-      this.User.userName = regForm.value.userName;
-      this.User.country = regForm.value.country;
-      this.User.emailId = regForm.value.emailId;
-      this.User.password = regForm.value.password;
-      this.User.phoneNumber = regForm.value.phoneNumber;
+    this.User.userName = regForm.userName;
+    this.User.country = regForm.country;
+    this.User.emailId = regForm.emailId;
+    this.User.password = regForm.password;
+    this.User.phoneNumber = regForm.phoneNumber;
 
     console.log(this.User);
     this.service.registerUser(this.User).subscribe(
@@ -60,5 +47,4 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
-
-  }
+}

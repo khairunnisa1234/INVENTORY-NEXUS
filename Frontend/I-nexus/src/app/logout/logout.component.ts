@@ -5,11 +5,11 @@ import { UserService } from '../user.service';
 @Component({
   selector: 'app-logout',
   templateUrl: './logout.component.html',
-  styleUrl: './logout.component.css'
+  styleUrls: ['./logout.component.css']  // Fix the typo here
 })
 export class LogoutComponent {
 
-  //Dependency Injection for Router Class from RouterModule & EmpService
+  // Dependency Injection for Router Class from RouterModule & EmpService
   constructor(private router: Router, private service: UserService) {
     this.service.setIsUserLoggedOut();
     
@@ -18,5 +18,4 @@ export class LogoutComponent {
 
     router.navigate(['login']);
   }
-
 }

@@ -6,7 +6,7 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  // private baseUrl = 'http://localhost:8085/';
+  private apiUrl = 'http://localhost:8888';
 
   isUserLoggedIn: boolean;
   loginStatus: Subject<boolean>;

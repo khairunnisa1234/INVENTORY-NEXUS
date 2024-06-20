@@ -1,0 +1,68 @@
+package com.controllers;
+
+import javax.mail.MessagingException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import com.model.User;
+import com.model.UserLogin;
+import com.model.request.CreateUserRequest;
+import com.service.UserService;
+import com.util.EmailUtil;
+import com.dao.UserDao;
+
+@CrossOrigin(origins = "http://localhost:4200")
+@RestController
+public class UserController {
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    UserDao userDao;
+    
+    @Autowired
+    EmailUtil emailUtil;
+
+    @PostMapping("/signup")
+    public ResponseEntity<?> createUser(@RequestBody CreateUserRequest createUserRequest) {
+        User user = userService.createUser(createUserRequest);
+        return ResponseEntity.ok().body(user);
+    }
+
+    @PostMapping("/login")
+    public User loginUser(@RequestBody UserLogin userLogin) {
+        return userDao.loginUser(userLogin.getEmailId(), userLogin.getPassword());
+    }
+
+    @GetMapping("sendOtpToEmail/{emailId}")
+    public String sendOtpToEmail(@PathVariable("emailId") String emailId) {
+        return userDao.sendOtpToEmailId(emailId);
+    }
+
+    @PutMapping("updateUserPassword")
+    public ResponseEntity<?> updateUserPassword(@RequestBody User user) {
+        userDao.updateCustomerPassword(user.getPassword(), user.getId());
+        return ResponseEntity.ok().body("Password updated successfully");
+    }
+    
+    @GetMapping("otpToEmail")
+    public String SndOTP(){
+    	String email = "skkhairunnisa453@gmail.com";
+    	
+    	try {
+			emailUtil.sendOtpEmail(email, "vijay", "1234");
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			
+			System.out.println("Error in sending email");
+			e.printStackTrace();
+		}
+
+    	
+    	
+    	return "OK ra abbay";
+    }
+
+}
