@@ -5,47 +5,36 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.model.Product;
+import com.model.Products;
 
 @Service
 public class ProductDao {
 	
-	@Autowired		//Dependency Injection for ProductRepository
-	ProductRepository prodRepo;
+	@Autowired
+	ProductRepository productrepository ;
 
-	public List<Product> getAllProducts() {
-		return prodRepo.findAll();
+	public List<Products> getAllproducts() {
+		return productrepository.findAll();
 	}
 
-	public Product getProductById(int prodId) {
-		Product product = new Product(0, "Product Not Found", 0.0);
-		return prodRepo.findById(prodId).orElse(product);
+	public List<Products> getProductsByCategory(String category) {
+		return productrepository.findByCategory(category);
 	}
 
-	public Product addProduct(Product product) {
-		return prodRepo.save(product);
+	public List<Products> getProductsByName(String name) {
+		return productrepository.findByName(name);
 	}
 
-	public List<Product> getProductByName(String productName) {
-		return prodRepo.findByName(productName);
+	public Products addProduct(Products products) {
+		return productrepository.save(products);
 	}
 
-	public Product updateProduct(Product product) {
-		return prodRepo.save(product);
+	public void deleteProduct(int pId) {
+		productrepository.deleteById(pId);
 	}
 
-	public void deleteProductById(int prodId) {
-		prodRepo.deleteById(prodId);
-	}
-
-	public void deleteAllProducts() {
-		prodRepo.deleteAll();
-	}
-	
-	
+//	public Products updateProduct(Products products) {
+//		return productrepository.save(products);
+//	}
 
 }
-
-
-
-

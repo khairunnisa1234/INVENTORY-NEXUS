@@ -3,6 +3,7 @@ package com.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,56 +13,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dao.ProductDao;
-import com.model.Product;
+import com.model.Products;
 
 @RestController
+@CrossOrigin(origins="http://localhost:4200")
 public class ProductCrontroller {
 
-	@Autowired
-	ProductDao prodDao;
+	@Autowired 
+	ProductDao productdao;
 	
 	@GetMapping("getAllProducts")
-	public List<Product> getAllProducts() {
-		return prodDao.getAllProducts();
+	public List<Products> getAllProducts(){
+		return productdao.getAllproducts();
 	}
 	
-	@GetMapping("getProductById/{id}")
-	public Product getProductById(@PathVariable("id") int prodId) {
-		return prodDao.getProductById(prodId);
+	@GetMapping("getProductsByCategory/{category}")
+	public List<Products> getProductsByCategory(@PathVariable("category") String category){
+		return productdao.getProductsByCategory(category);
+	}
+	
+	@GetMapping("getProductsByName/{name}")
+	public List<Products> getProductsByName(@PathVariable("name") String name){
+		return productdao.getProductsByName(name);
 	}
 	
 	@PostMapping("addProduct")
-	public Product addProduct(@RequestBody Product product) {
-		return prodDao.addProduct(product);
-	}
-	
-	@GetMapping("getProductByName/{prodName}")
-	public List<Product> getProductByName(@PathVariable("prodName") String prodName) {
-		return prodDao.getProductByName(prodName);
+	public Products addProduct(@RequestBody Products products){
+		return productdao.addProduct(products);
 	}
 	
 	@PutMapping("updateProduct")
-	public Product updateProduct(@RequestBody Product product) {
-		return prodDao.updateProduct(product);
+	public Products updateProduct(@RequestBody Products products){
+		return productdao.addProduct(products);
 	}
 	
-	@DeleteMapping("deleteProductById/{prodId}")
-	public String deleteProductById(@PathVariable("prodId") int prodId) {
-		prodDao.deleteProductById(prodId);
-		return "Product Deleted Successfully!!";
-	}
-	
-	@DeleteMapping("deleteAllProducts")
-	public String deleteAllProducts() {
-		prodDao.deleteAllProducts();
-		return "All Products Deleted Successfully!!";
+	@DeleteMapping("deleteProductById/{pId}")
+	public String deleteProductById(@PathVariable("pId") int pId){
+		productdao.deleteProduct(pId);
+		return "Product Deleted Successfully!!!";
 	}
 }
-
-
-
-
-
-
-
-
