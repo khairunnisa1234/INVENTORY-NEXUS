@@ -10,28 +10,25 @@ import { authGuard } from './auth.guard';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './logout/logout.component';
-
+import { ContactusComponent } from './contactus/contactus.component';
+import { PhoneComponent } from './phone/phone.component';
 
 const routes: Routes = [
-  {path:'',            component:HomeComponent},
-  {path:'login',       component:LoginComponent},
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-
-
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'aboutus', component: AboutusComponent },
-  { path: 'contactus', component: CartComponent },
-  { path: 'categories',canActivate: [authGuard], component: CategoriesComponent },
-  { path: 'products',canActivate: [authGuard], component: ProductsComponent },
-  { path: 'cart',canActivate: [authGuard], component: CartComponent },
-  
+  { path: 'contactus', component: ContactusComponent },
+  { path: 'categories', canActivate: [authGuard], component: CategoriesComponent },
+  { path: 'products', canActivate: [authGuard], component: ProductsComponent },
+  { path: 'cart', canActivate: [authGuard], component: CartComponent },
   { path: 'forgotpassword', component: ForgotpasswordComponent },
-  {path:'logout',      canActivate:[authGuard], component:LogoutComponent}
+  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent }, 
+  { path: 'phones', component: PhoneComponent },
 
 
-
-
-  
 ];
 
 @NgModule({

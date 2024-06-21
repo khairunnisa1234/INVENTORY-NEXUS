@@ -1,0 +1,20 @@
+.logout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .logout-container .btn {
+    background-color: #e50914; /* Netflix red */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .logout-container .btn:hover {
+    background-color: #f40612; /* Slightly brighter red on hover */
+  }
+  

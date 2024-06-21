@@ -1,0 +1,11 @@
+package com.ts.nexux;
+
+ 
+
+public class NexuxApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(NexuxApplication.class, args);
+	}
+
+}

@@ -6,8 +6,6 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  // private baseUrl = 'http://localhost:8085/';
-
   isUserLoggedIn: boolean;
   loginStatus: Subject<boolean>;
 
@@ -17,21 +15,23 @@ export class UserService {
   }
 
   resetPassword(email: string): Observable<any> {
-    return this.http.post('this is my aip/forgot-password', { email });
+    return this.http.post('your-api-endpoint/forgot-password', { email });
   }
 
   setIsUserLoggedIn() {
     this.isUserLoggedIn = true;
+    localStorage.setItem('isUserLoggedIn', 'true');
     this.loginStatus.next(true);
   }
 
   setIsUserLoggedOut() {
     this.isUserLoggedIn = false;
+    localStorage.removeItem('isUserLoggedIn');
     this.loginStatus.next(false);
   }
 
   getIsUserLoggedIn(): boolean {
-    return this.isUserLoggedIn;
+    return localStorage.getItem('isUserLoggedIn') === 'true';
   }
 
   getUserLoginStatus(): Observable<boolean> {
@@ -48,5 +48,12 @@ export class UserService {
 
   registerUser(user: any): Observable<any> {
     return this.http.post('http://localhost:8085/register', user);
+  }
+  sendOtpToEmail(emailId: any){
+    return this.http.get('http://localhost:8090/sendOtpToEmail/'+ emailId);
+  }
+
+  updateCustomerPassword(customer: any){
+    return this.http.put('http://localhost:8090/updateCustomerPassword', customer);
   }
 }

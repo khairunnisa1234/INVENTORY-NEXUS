@@ -1,44 +1,146 @@
-<!-- src/app/register/register.component.html -->
-<div class="form-container">
-  <form #regForm="ngForm" (ngSubmit)="registerSubmit(regForm.value)">
+<div class="container">
+  <form #regForm="ngForm" (ngSubmit)="registerSubmit(regForm)">
     <h2 align="center">Registration Form</h2>
     <table align="center">
       <tbody>
+        <!-- UserName Field -->
         <tr>
-          <td>Enter UserName</td>
-          <td><input type="text" name="userName" ngModel/></td>
-        </tr>
-        <tr>
-          <td>Select Country</td>
+          <td>UserName :</td>
           <td>
-            <select name="country" ngModel>
-              <option value="" selected>Select Country</option>
+            <input
+              type="text"
+              name="userName"
+              ngModel
+              class="form-control"
+              required
+            />
+            <div *ngIf="regForm.submitted && regForm.controls['userName']?.errors?.['required']">
+              <p class="text-danger">Enter User Name</p>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Country Selection Field -->
+        <tr>
+          <td>Select Country :</td>
+          <td>
+            <select name="country" ngModel class="form-control" required>
+              <option value="" selected disabled>Select Country</option>
               <option *ngFor="let country of countries" [value]="country.cca3">
                 {{ country.name.common }}
               </option>
             </select>
+            <div *ngIf="regForm.submitted && regForm.controls['country']?.errors?.['required']">
+              <p class="text-danger">Select a Country</p>
+            </div>
           </td>
         </tr>
+
+        <!-- Phone Number Field -->
         <tr>
-          <td>Enter EmailId</td>
-          <td><input type="text" name="emailId" ngModel/></td>
-        </tr>
-        <tr>
-          <td>Enter Password</td>
-          <td><input type="password" name="password" ngModel /></td>
-        </tr>
-        <tr>
-          <td>Enter Phone Number</td>
-          <td><input type="text" name="phoneNumber" ngModel /></td>
-        </tr>
-        <tr>
-          <td></td>
+          <td>Phone Number :</td>
           <td>
-            <button class="btn btn-primary">Register</button>
-            Already User? <a routerLink="/login">SignIn</a>
+            <input
+              type="tel"
+              id="phoneNumber"
+              name="phoneNumber"
+              class="form-control"
+              ngModel
+              required
+              pattern="[6789][0-9]{9}"
+              placeholder="Enter Phone Number"
+            />
+            <div *ngIf="regForm.controls['phoneNumber'].errors?.['required'] && (regForm.controls['phoneNumber'].touched || regForm.submitted)">
+              <p class="text-danger">Enter Phone Number</p>
+            </div>
+            <div *ngIf="regForm.controls['phoneNumber'].errors?.['pattern'] && (regForm.controls['phoneNumber'].touched || regForm.submitted)">
+              <p class="text-danger">Phone Number must be 10 digits and start with 6-9</p>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Email ID Field -->
+        <tr>
+          <td>EmailId :</td>
+          <td>
+            <input
+              type="email"
+              id="emailId"
+              name="emailId"
+              class="form-control"
+              ngModel
+              required
+              pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+              placeholder="Enter EmailId"
+            />
+            <div *ngIf="regForm.controls['emailId'].errors?.['required'] && (regForm.controls['emailId'].touched || regForm.submitted)">
+              <p class="text-danger">Enter EmailId</p>
+            </div>
+            <div *ngIf="regForm.controls['emailId'].errors?.['pattern'] && (regForm.controls['emailId'].touched || regForm.submitted)">
+              <p class="text-danger">Email should contain only lowercase letters and be in the format 'example&#64;gmail.com'</p>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Password Field -->
+        <tr>
+          <td>Password :</td>
+          <td>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              ngModel
+              required
+              minlength="8"
+              pattern="^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,}$"
+              placeholder="Enter Password"
+            />
+            <div *ngIf="regForm.controls['password'].errors?.['required'] && (regForm.controls['password'].touched || regForm.submitted)">
+              <p class="text-danger">Enter Password</p>
+            </div>
+            <div *ngIf="regForm.controls['password'].errors?.['minlength'] && (regForm.controls['password'].touched || regForm.submitted)">
+              <p class="text-danger">Password must be at least 8 characters</p>
+            </div>
+            <div *ngIf="regForm.controls['password'].errors?.['pattern'] && (regForm.controls['password'].touched || regForm.submitted)">
+              <p class="text-danger">Password must include at least one lowercase letter, one uppercase letter, one number, and one special character</p>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Password Confirmation Field -->
+        <tr>
+          <td>Re-Enter Password :</td>
+          <td>
+            <input
+              type="password"
+              name="passwordConfirmation"
+              class="form-control"
+              ngModel
+              required
+              [pattern]="regForm.controls['password'].value"
+              placeholder="Re-Enter Password"
+            />
+            <div *ngIf="regForm.controls['passwordConfirmation'].errors?.['required'] && (regForm.controls['passwordConfirmation'].touched || regForm.submitted)">
+              <p class="text-danger">Re-enter Password</p>
+            </div>
+            <div *ngIf="regForm.controls['passwordConfirmation'].errors?.['pattern'] && (regForm.controls['passwordConfirmation'].touched || regForm.submitted)">
+              <p class="text-danger">Passwords do not match</p>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Form Actions -->
+        <tr>
+          <td colspan="2">
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Register</button>
+              <span>Already User? <a routerLink="/login">SignIn</a></span>
+            </div>
           </td>
         </tr>
       </tbody>
-    </table>   
+    </table>
   </form>
 </div>

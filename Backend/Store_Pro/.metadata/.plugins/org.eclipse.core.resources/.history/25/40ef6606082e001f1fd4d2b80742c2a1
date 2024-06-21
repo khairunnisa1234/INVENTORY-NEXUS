@@ -1,0 +1,16 @@
+package com.model.request;
+
+public class CreateUserReques {
+	@Getter
+	@Setter
+	@AllArgsConstructor
+	@NoArgsConstructor
+	public class CreateUserRequest {
+	    private String userName;
+	    private String emailId;
+	    private String password;
+	    private String mobileNumber;
+
+	}
+
+}

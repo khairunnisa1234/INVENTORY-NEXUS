@@ -1,0 +1,40 @@
+package com.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import com.model.UserLogin;
+
+import service.UserLoginService;
+
+@RestController
+@RequestMapping("/api/auth")
+public class UserLoginController {
+
+    private final UserLoginService userLoginService;
+
+    @Autowired
+    public UserLoginController(UserLoginService userLoginService) {
+        this.userLoginService = userLoginService;
+    }
+
+    @PostMapping("/register")
+    public UserLogin register(@RequestBody UserLogin userLogin) {
+        return userLoginService.registerUser(userLogin);
+    }
+
+    @PostMapping("/login")
+    public boolean login(@RequestBody UserLogin userLogin) {
+        UserLogin storedUser = findUserByEmail(userLogin.getEmailId());
+        if (storedUser != null) {
+            return userLoginService.validateUser(storedUser, userLogin.getPassword());
+        }
+        return false;
+    }
+
+    // This method should fetch the UserLogin by emailId from the database
+    private UserLogin findUserByEmail(String emailId) {
+        // Implement this method to fetch user from your database
+        return null; // Replace with actual implementation
+    }
+}

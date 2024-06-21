@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'; // Add this import
+import { HttpClientModule} from '@angular/common/http'; // Ensure this import is correct
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +18,11 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { UserService } from './user.service';
 import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './logout/logout.component';
+import { CommonModule } from '@angular/common';
+import { FooterComponent } from './footer/footer.component';
+import { ContactusComponent } from './contactus/contactus.component';
+import { PhoneComponent } from './phone/phone.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 @NgModule({
   declarations: [
@@ -32,14 +37,18 @@ import { LogoutComponent } from './logout/logout.component';
     ForgotpasswordComponent,
     HomeComponent,
     LogoutComponent,
+    FooterComponent,
+    ContactusComponent,
+    PhoneComponent,
+    WishlistComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, 
+    HttpClientModule, // Import HttpClientModule here
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    CommonModule,
     FormsModule
   ],
   providers: [UserService],

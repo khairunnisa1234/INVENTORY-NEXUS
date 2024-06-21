@@ -1,24 +1,22 @@
 package com.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-
 import com.model.User;
-import com.model.UserLogin;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+@Repository
+public interface UserDao extends JpaRepository<User, Long> {
 
-@Service
-public class UserDao {
+    @Query("SELECT u FROM User u WHERE u.emailId = :emailId AND u.password = :password")
+    User loginUser(@Param("emailId") String emailId, @Param("password") String password);
 
-    @Autowired
-    private UserRepository userRepo;
-    
-    public User saveUser(User user) {
-        return userRepo.save(user);
-    }
+    @Query("SELECT u.emailId FROM User u WHERE u.emailId = :emailId")
+    String sendOtpToEmailId(@Param("emailId") String emailId);
 
-    public User loginUser(UserLogin userLogin) {
-        return userRepo.findByEmailIdAndPassword(userLogin.getEmailId(), userLogin.getPassword());
-    }
+    @Query("UPDATE User u SET u.password = :password WHERE u.id = :id")
+    void updateCustomerPassword(@Param("password") String password, @Param("id") Long id);
+
+	User findByEmailId(String userEmail);
 }

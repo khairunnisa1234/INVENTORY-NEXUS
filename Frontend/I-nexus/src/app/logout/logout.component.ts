@@ -1,22 +1,24 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-logout',
   templateUrl: './logout.component.html',
-  styleUrl: './logout.component.css'
+  styleUrls: ['./logout.component.css']
 })
 export class LogoutComponent {
 
-  //Dependency Injection for Router Class from RouterModule & EmpService
-  constructor(private router: Router, private service: UserService) {
-    this.service.setIsUserLoggedOut();
-    
-    localStorage.removeItem('emailId');
-    localStorage.clear();
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private toastr: ToastrService
+  ) { }
 
-    router.navigate(['login']);
+  logout() {
+    this.userService.setIsUserLoggedOut();
+    this.toastr.success('Logged out successfully', 'Success');
+    this.router.navigate(['/login']);
   }
-
 }

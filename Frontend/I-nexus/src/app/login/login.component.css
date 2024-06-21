@@ -1,0 +1,109 @@
+body {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    
+    background-color: #f9f9f9; /* Fallback background color */
+    background-repeat: no-repeat; /* Prevents the background image from repeating */
+    background-size: cover; /* Ensures the background image covers the entire screen */
+    background-position: center; /* Centers the background image */
+    font-family: Arial, sans-serif; /* Example font-family */
+    color: #333; /* Example text color */
+    height: 100vh; /* Full height of viewport */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  
+  .container {
+    width: 400px;
+    background-color: rgba(249, 249, 249, 0.8); /* Semi-transparent background for container */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .input-group-addon {
+    background-color: #eee;
+    border: 1px solid #ccc;
+  }
+  
+  .form-control {
+    border: 1px solid #ccc;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  /* Validation message style */
+  .text-danger {
+    font-size: small; 
+    
+    margin-bottom: -3px;
+    padding: 5px; 
+    color: #721c24; 
+   
+  
+  }
+  
+  .error-message {
+    color: #d9534f;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .form-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .forgot-password {
+    color: blue;
+    text-decoration: none;
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+  
+  .new-user-signup a {
+    text-decoration: none;
+  }
+  
+  .new-user-signup a:hover {
+    text-decoration: underline;
+  }
+  
+  .btn-primary {
+    background-color: blue;
+    border-color: blue;
+    width: 100%;
+  }
+  
+  .btn-primary:hover {
+    background-color: blue;
+    border-color: blue;
+  }
+  
+  .alert {
+    text-align: center;
+  }
+  
+  .mt-3 {
+    margin-top: 1rem;
+  }
+  
+  .input-group {
+    width: 100%;
+  }
