@@ -1,11 +1,11 @@
 body {
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
+    margin: 0; 
+    padding: 0; 
     
-    background-color: #f9f9f9; /* Fallback background color */
-    background-repeat: no-repeat; /* Prevents the background image from repeating */
-    background-size: cover; /* Ensures the background image covers the entire screen */
-    background-position: center; /* Centers the background image */
+    background-color: #f9f9f9; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-position: center;
     font-family: Arial, sans-serif; /* Example font-family */
     color: #333; /* Example text color */
     height: 100vh; /* Full height of viewport */

@@ -6,7 +6,7 @@
   }
   
   .logout-container .btn {
-    background-color: #e50914; /* Netflix red */
+    background-color: #e50914;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -15,6 +15,6 @@
   }
   
   .logout-container .btn:hover {
-    background-color: #f40612; /* Slightly brighter red on hover */
+    background-color: #f40612; 
   }
   

@@ -49,7 +49,7 @@ import { WishlistService } from './wishlist.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, // Import HttpClientModule here
+    HttpClientModule, 
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     CommonModule,

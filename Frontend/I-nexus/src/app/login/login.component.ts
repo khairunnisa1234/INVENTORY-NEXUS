@@ -22,18 +22,17 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   async loginSubmit(loginForm: any) {
-    // Storing the user email under localStorage
+
     localStorage.setItem("emailId", loginForm.emailId);
 
     if (loginForm.emailId === 'HR' && loginForm.password === 'HR') {
       this.service.setIsUserLoggedIn();
       this.toastr.success('Login successful', 'Success');
-      this.router.navigate(['showemps']);
+      this.router.navigate(['products']);
     } else {
       this.user.emailId = loginForm.emailId;
       this.user.password = loginForm.password;
 
-      // Using Post Request
       await this.service.userLogin(this.user).then((data: any) => {
         console.log(data);
         this.user = data;

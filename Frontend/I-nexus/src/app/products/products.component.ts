@@ -86,7 +86,7 @@ export class ProductsComponent {
   constructor(private router: Router) {}
 
   exploreCategory(category: string): void {
-    // Navigate to corresponding component based on category
+
     if (category === 'phones') {
       this.router.navigateByUrl('/phones');
     } else if (category === 'laptops') {
