@@ -19,14 +19,14 @@ export class AdminService {
     this.adminLoginStatus = false;
   } 
 
-  getAllCustomers(){
-    return this.http.get('http://localhost:8888/getAllCustomer');
+  getAllUsers(){
+    return this.http.get('http://localhost:8085/getAllUsers');
   }
-  getCustomerById(cId:number){
-    return this.http.get('http://localhost:8888/getCustomerById/'+cId);
+  getUserById(cId:number){
+    return this.http.get('http://localhost:8085/getUserById/'+cId);
   }
 
   getProducts(){
-    return this.http.get('http://localhost:8888/getProducts');
+    return this.http.get('http://localhost:8085/getProducts');
   }
 }

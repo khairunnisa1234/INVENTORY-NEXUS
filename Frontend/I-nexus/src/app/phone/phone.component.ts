@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { WishlistService } from '../wishlist.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-phone',
@@ -15,11 +17,14 @@ export class PhoneComponent {
     { id: 6, name: 'Phone Model F', price: 40000, imageUrl: 'assets/phoneF.jpg' }
   ];
 
+  constructor(private wishlistService: WishlistService, private router: Router) {}
+
   addToCart(product: any) {
     console.log('Added to cart:', product);
   }
 
   addToWishlist(product: any) {
-    console.log('Added to wishlist:', product);
+    this.wishlistService.addToWishlist(product);
+    this.router.navigate(['/wishlist']);
   }
 }

@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { PhoneComponent } from './phone/phone.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,8 +26,9 @@ const routes: Routes = [
   { path: 'forgotpassword', component: ForgotpasswordComponent },
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent }, 
+  { path: 'logout', component: LoginComponent }, 
   { path: 'phones', component: PhoneComponent },
+  { path: 'wishlist', component: WishlistComponent }
 
 
 ];

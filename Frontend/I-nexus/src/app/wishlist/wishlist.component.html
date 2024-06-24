@@ -1,17 +1,16 @@
 <div class="wishlist-container">
-    <h2>My Wishlist</h2>
-    <div *ngIf="wishlistItems.length === 0" class="empty-wishlist">
-      Your wishlist is empty.
-    </div>
-    <div *ngFor="let item of wishlistItems" class="wishlist-item">
-      <img [src]="item.imageUrl" alt="{{ item.title }}" class="wishlist-img">
-      <div class="wishlist-details">
-        <h3 class="wishlist-title">{{ item.title }}</h3>
-        <p class="wishlist-description">{{ item.description }}</p>
-        <p class="wishlist-price">Price: ₹ {{ item.price }}</p>
-        <button class="remove-button" (click)="removeFromWishlist(item)">Remove</button>
-        <button class="purchase-button" (click)="purchase(item)">Purchase</button>
-      </div>
+  <h2>My Wishlist</h2>
+  <div *ngIf="wishlistItems.length === 0" class="empty-wishlist">
+    Your wishlist is empty.
+  </div>
+  <div *ngFor="let item of wishlistItems" class="wishlist-item">
+    <img [src]="item.imageUrl" alt="{{ item.name }}" class="wishlist-img">
+    <div class="wishlist-details">
+      <h3 class="wishlist-title">{{ item.name }}</h3>
+      <p class="wishlist-description">{{ item.description }}</p>
+      <p class="wishlist-price">Price: ₹ {{ item.price }}</p>
+      <button class="remove-button" (click)="removeFromWishlist(item)">Remove</button>
+      <button class="purchase-button" (click)="purchase(item)">Purchase</button>
     </div>
   </div>
-  
+</div>

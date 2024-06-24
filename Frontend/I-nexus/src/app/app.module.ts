@@ -23,6 +23,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { PhoneComponent } from './phone/phone.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { WishlistService } from './wishlist.service';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,9 @@ import { WishlistComponent } from './wishlist/wishlist.component';
     ContactusComponent,
     PhoneComponent,
     WishlistComponent,
+    
+
+
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,8 @@ import { WishlistComponent } from './wishlist/wishlist.component';
     CommonModule,
     FormsModule
   ],
-  providers: [UserService],
+  providers: [UserService, WishlistService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
