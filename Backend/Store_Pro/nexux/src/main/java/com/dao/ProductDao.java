@@ -9,32 +9,33 @@ import com.model.Products;
 
 @Service
 public class ProductDao {
-	
-	@Autowired
-	ProductRepository productrepository ;
+    
+    @Autowired
+    ProductRepository productrepository ;
 
-	public List<Products> getAllproducts() {
-		return productrepository.findAll();
-	}
+    public List<Products> getAllproducts() {
+        return productrepository.findAll();
+    }
 
-	public List<Products> getProductsByCategory(String category) {
-		return productrepository.findByCategory(category);
-	}
+    public List<Products> getProductsByCategory(String category) {
+        return productrepository.findByCategory(category);
+    }
 
-	public List<Products> getProductsByName(String name) {
-		return productrepository.findByName(name);
-	}
+    public List<Products> getProductsByName(String name) {
+        return productrepository.findByName(name);
+    }
 
-	public Products addProduct(Products products) {
-		return productrepository.save(products);
-	}
+    public Products addProduct(Products products) {
+        // Ensure product ID is not set to avoid conflict
+        products.setpId(0);
+        return productrepository.save(products);
+    }
 
-	public void deleteProduct(int pId) {
-		productrepository.deleteById(pId);
-	}
+    public void deleteProduct(int pId) {
+        productrepository.deleteById(pId);
+    }
 
-//	public Products updateProduct(Products products) {
-//		return productrepository.save(products);
-//	}
-
+    public Products updateProduct(Products products) {
+        return productrepository.save(products);
+    }
 }
